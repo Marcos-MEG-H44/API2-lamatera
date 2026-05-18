@@ -1,28 +1,52 @@
-#  API2 - La Matera
+# API2 - La Matera
 
 API REST desarrollada con Spring Boot para la gestión de un emprendimiento de mates y accesorios.
 
-Proyecto realizado como práctica de API REST utilizando Java + Spring Boot + SQL Server + JWT + JPA.
+Proyecto realizado como práctica de desarrollo Backend utilizando:
+
+- Java
+- Spring Boot
+- SQL Server
+- JWT Authentication
+- JPA / Hibernate
+- Maven
 
 ---
 
-#  Tecnologías usadas
+# Descripción
 
-- Java 17+
+La API permite administrar:
+
+✔ Clientes  
+✔ Productos  
+✔ Categorías  
+✔ Pedidos  
+✔ Autenticación con JWT  
+
+Incluye relaciones entre entidades, seguridad y pruebas automáticas.
+
+---
+
+# Tecnologías usadas
+
+- Java 21
 - Spring Boot
 - Spring Security
 - JWT Authentication
 - Spring Data JPA
+- Hibernate
 - SQL Server
 - Maven
 - Lombok
 - Thunder Client
-- Git + GitHub
+- Git
+- GitHub
 
 ---
 
 # Estructura del proyecto
 
+```txt
 src/main/java/com/tuapp/lamatera
 
 controller/
@@ -32,6 +56,8 @@ entity/
 dto/
 mapper/
 security/
+config/
+```
 
 ---
 
@@ -46,9 +72,10 @@ La API utiliza:
 
 Endpoints públicos:
 
+```http
 POST /auth/register
-
 POST /auth/login
+```
 
 ---
 
@@ -81,7 +108,9 @@ POST /auth/login
 
 Relación:
 
+```txt
 ManyToOne → Categoria
+```
 
 ---
 
@@ -95,9 +124,16 @@ ManyToOne → Categoria
 
 Relaciones:
 
+```txt
 ManyToOne → Cliente
-
 ManyToMany → Productos
+```
+
+Tabla intermedia:
+
+```txt
+pedido_producto
+```
 
 ---
 
@@ -109,9 +145,7 @@ ManyToMany → Productos
 
 ✔ ManyToMany
 
-✔ Tabla intermedia:
-
-pedido_producto
+✔ Tabla intermedia
 
 ---
 
@@ -119,43 +153,47 @@ pedido_producto
 
 ## Auth
 
+```http
 POST /auth/register
-
 POST /auth/login
+```
 
 ---
 
 ## Clientes
 
+```http
 GET /clientes
-
 POST /clientes
+```
 
 ---
 
 ## Productos
 
+```http
 GET /productos
-
 POST /productos
+```
 
 ---
 
 ## Categorías
 
+```http
 GET /categorias
-
 POST /categorias
+```
 
 ---
 
 ## Pedidos
 
+```http
 GET /pedidos
-
 POST /pedidos
-
 GET /pedidos/ventas
+```
 
 Obtiene total vendido.
 
@@ -165,23 +203,152 @@ Obtiene total vendido.
 
 Implementadas usando:
 
-@Query JPQL
+```java
+@Query
+```
 
 Ejemplo:
 
-Total de ventas:
-
+```sql
 SELECT SUM(total)
+```
+
+---
+
+# Tests
+
+Para ejecutar los tests:
+
+```bash
+.\mvnw test
+```
+
+Incluye:
+
+✔ ProductoServiceTest
+
+✔ ProductoControllerTest
+
+✔ LamateraApplicationTests
+
+---
+
+# Configuración
+
+Editar:
+
+```txt
+src/main/resources/application.properties
+```
+
+Configurar:
+
+- SQL Server
+- Usuario
+- Password
+- Base de datos
 
 ---
 
 # Ejecutar proyecto
 
-Configurar:
-
-application.properties
-
-Luego:
+Ejecutar:
 
 ```bash
 .\mvnw spring-boot:run
+```
+
+La API inicia en:
+
+```txt
+http://localhost:8080
+```
+
+---
+
+# Script SQL
+
+Incluye script para crear:
+
+✔ Base de datos
+
+✔ Tablas
+
+✔ Relaciones
+
+✔ Tabla intermedia `pedido_producto`
+
+Ubicación:
+
+```txt
+database/script_lamatera.sql
+```
+
+---
+
+# Estructura general del proyecto
+
+```txt
+API2-lamatera
+│
+├── database/
+│      script_lamatera.sql
+│
+├── src/main/java/
+│      controller/
+│      service/
+│      repository/
+│      entity/
+│      dto/
+│      mapper/
+│      security/
+│
+├── src/test/java/
+│      ProductoServiceTest
+│      ProductoControllerTest
+│      LamateraApplicationTests
+│
+└── README.md
+```
+
+---
+
+# Autor
+
+Proyecto desarrollado por:
+
+**Marcos Godoy**
+
+Tecnicatura en Programación - Programacion IV
+
+---
+
+# Repositorio
+
+Repositorio GitHub:
+
+:contentReference[oaicite:0]{index=0}
+
+---
+
+# Estado del proyecto
+
+Proyecto funcional con:
+
+✔ CRUD completo
+
+✔ Seguridad JWT
+
+✔ Relaciones entre entidades
+
+✔ Tests implementados
+
+✔ SQL Server
+
+✔ Documentación
+
+✔ GitHub
+
+✔ Script SQL
+
+**Estado: TERMINADO**
