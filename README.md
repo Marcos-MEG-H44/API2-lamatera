@@ -1,143 +1,165 @@
 # API2 - La Matera
 
-API REST desarrollada con Spring Boot para la gestión de un emprendimiento de mates y accesorios.
+Sistema de gestión desarrollado para administrar productos, categorías, clientes y pedidos de un emprendimiento.
 
-Proyecto realizado como práctica de desarrollo Backend utilizando:
+Proyecto realizado como práctica de Programación IV utilizando arquitectura Backend + Frontend.
 
-- Java
-- Spring Boot
-- SQL Server
-- JWT Authentication
-- JPA / Hibernate
-- Maven
+## Tecnologías utilizadas
 
----
+### Backend
 
-# Descripción
+* Java 21
+* Spring Boot
+* Spring Data JPA
+* Hibernate
+* SQL Server
+* Maven
+* Lombok
 
-La API permite administrar:
+### Frontend
 
-✔ Clientes  
-✔ Productos  
-✔ Categorías  
-✔ Pedidos  
-✔ Autenticación con JWT  
+* React
+* React Router DOM
+* Axios
 
-Incluye relaciones entre entidades, seguridad y pruebas automáticas.
+### Herramientas
 
----
-
-# Tecnologías usadas
-
-- Java 21
-- Spring Boot
-- Spring Security
-- JWT Authentication
-- Spring Data JPA
-- Hibernate
-- SQL Server
-- Maven
-- Lombok
-- Thunder Client
-- Git
-- GitHub
+* Git
+* GitHub
+* Thunder Client
+* Visual Studio Code
+* IntelliJ IDEA
 
 ---
 
-# Estructura del proyecto
+## Descripción
 
-```txt
+El sistema permite administrar:
+
+✔ Clientes
+
+✔ Productos
+
+✔ Categorías
+
+✔ Pedidos
+
+✔ Dashboard de estadísticas
+
+Incluye relaciones entre entidades, arquitectura en capas, DTOs, Mappers y persistencia en SQL Server.
+
+---
+
+## Funcionalidades implementadas
+
+### Productos
+
+* Listar productos
+* Crear productos
+* Modificar productos
+* Eliminar productos
+
+### Categorías
+
+* Listar categorías
+* Crear categorías
+* Modificar categorías
+* Eliminar categorías
+
+### Clientes
+
+* Listar clientes
+* Crear clientes
+* Modificar clientes
+* Eliminar clientes
+
+### Pedidos
+
+* Listar pedidos
+* Crear pedidos
+* Modificar pedidos
+* Eliminar pedidos
+
+### Dashboard
+
+Visualización de:
+
+* Cantidad de productos
+* Cantidad de clientes
+* Cantidad de pedidos
+* Total de ventas
+
+---
+
+## Arquitectura del Backend
+
 src/main/java/com/tuapp/lamatera
 
 controller/
+
 service/
+
 repository/
+
 entity/
+
 dto/
+
 mapper/
-security/
+
 config/
-```
 
 ---
 
-# Seguridad
+## Entidades
 
-La API utiliza:
+### Cliente
 
-- Registro de usuarios
-- Login
-- JWT Token
-- Endpoints protegidos
+* id
+* nombre
+* apellido
+* telefono
+* direccion
 
-Endpoints públicos:
+### Categoria
 
-```http
-POST /auth/register
-POST /auth/login
-```
+* id
+* nombre
 
----
+### Producto
 
-# Entidades
-
-## Cliente
-
-- id
-- nombre
-- telefono
-- direccion
-
----
-
-## Categoria
-
-- id
-- nombre
-
----
-
-## Producto
-
-- id
-- nombre
-- precio
-- stock
-- descripcion
-- categoria
+* id
+* nombre
+* precio
+* stock
+* descripcion
+* categoria
 
 Relación:
 
-```txt
 ManyToOne → Categoria
-```
 
----
+### Pedido
 
-## Pedido
-
-- id
-- fecha
-- total
-- cliente
-- productos
+* id
+* fecha
+* total
+* cliente
+* productos
 
 Relaciones:
 
-```txt
 ManyToOne → Cliente
-ManyToMany → Productos
-```
+
+ManyToMany → Producto
 
 Tabla intermedia:
 
-```txt
 pedido_producto
-```
 
 ---
 
-# Relaciones implementadas
+## Relaciones implementadas
 
 ✔ OneToMany
 
@@ -149,124 +171,118 @@ pedido_producto
 
 ---
 
-# Endpoints principales
+## Endpoints principales
 
-## Auth
+### Clientes
 
-```http
-POST /auth/register
-POST /auth/login
-```
-
----
-
-## Clientes
-
-```http
 GET /clientes
+
 POST /clientes
-```
 
----
+PUT /clientes/{id}
 
-## Productos
+DELETE /clientes/{id}
 
-```http
+### Productos
+
 GET /productos
+
 POST /productos
-```
 
----
+PUT /productos/{id}
 
-## Categorías
+DELETE /productos/{id}
 
-```http
+### Categorías
+
 GET /categorias
+
 POST /categorias
-```
 
----
+PUT /categorias/{id}
 
-## Pedidos
+DELETE /categorias/{id}
 
-```http
+### Pedidos
+
 GET /pedidos
-POST /pedidos
-GET /pedidos/ventas
-```
 
-Obtiene total vendido.
+POST /pedidos
+
+PUT /pedidos/{id}
+
+DELETE /pedidos/{id}
+
+GET /pedidos/ventas
 
 ---
 
-# Consultas personalizadas
+## Consultas personalizadas
 
-Implementadas usando:
+Implementadas mediante:
 
-```java
 @Query
-```
 
 Ejemplo:
 
-```sql
 SELECT SUM(total)
-```
+
+Para calcular el total de ventas.
 
 ---
 
-# Tests
+## Pruebas
 
 Para ejecutar los tests:
 
-```bash
 .\mvnw test
-```
 
 Incluye:
 
-✔ ProductoServiceTest
-
-✔ ProductoControllerTest
-
-✔ LamateraApplicationTests
+* ProductoServiceTest
+* ProductoControllerTest
+* LamateraApplicationTests
 
 ---
 
-# Configuración
+## Configuración
 
 Editar:
 
-```txt
 src/main/resources/application.properties
-```
 
 Configurar:
 
-- SQL Server
-- Usuario
-- Password
-- Base de datos
+* SQL Server
+* Usuario
+* Contraseña
+* Base de datos
 
 ---
 
-# Ejecutar proyecto
+## Ejecutar Backend
 
-Ejecutar:
-
-```bash
 .\mvnw spring-boot:run
-```
 
-La API inicia en:
+Servidor:
 
-```txt
 http://localhost:8080
-```
 
 ---
 
-# Script SQL
+## Ejecutar Frontend
+
+npm install
+
+npm run dev
+
+Servidor React:
+
+http://localhost:5173
+
+---
+
+## Script SQL
 
 Incluye script para crear:
 
@@ -276,79 +292,50 @@ Incluye script para crear:
 
 ✔ Relaciones
 
-✔ Tabla intermedia `pedido_producto`
+✔ Tabla intermedia pedido_producto
 
 Ubicación:
 
-```txt
 database/script_lamatera.sql
-```
 
 ---
 
-# Estructura general del proyecto
+## Autor
 
-```txt
-API2-lamatera
-│
-├── database/
-│      script_lamatera.sql
-│
-├── src/main/java/
-│      controller/
-│      service/
-│      repository/
-│      entity/
-│      dto/
-│      mapper/
-│      security/
-│
-├── src/test/java/
-│      ProductoServiceTest
-│      ProductoControllerTest
-│      LamateraApplicationTests
-│
-└── README.md
-```
+Marcos Godoy
+
+Tecnicatura en Programación
+
+Programación IV
 
 ---
 
-# Autor
-
-Proyecto desarrollado por:
-
-**Marcos Godoy**
-
-Tecnicatura en Programación - Programacion IV
-
----
-
-# Repositorio
+## Repositorio
 
 Repositorio GitHub:
 
-:contentReference[oaicite:0]{index=0}
+https://github.com/Marcos-MEG-H44/API2-lamatera
 
 ---
 
-# Estado del proyecto
-
-Proyecto funcional con:
+## Estado del proyecto
 
 ✔ CRUD completo
 
-✔ Seguridad JWT
+✔ Frontend React
+
+✔ Backend Spring Boot
+
+✔ SQL Server
+
+✔ Dashboard
 
 ✔ Relaciones entre entidades
 
 ✔ Tests implementados
 
-✔ SQL Server
-
 ✔ Documentación
 
 ✔ GitHub
 
-✔ Script SQL
-
-**Estado: TERMINADO**
+Estado: TERMINADO
