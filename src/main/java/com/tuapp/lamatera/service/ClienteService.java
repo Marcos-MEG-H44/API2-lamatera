@@ -75,5 +75,41 @@ public class ClienteService {
                 );
 
     }
+    public ClienteResponse actualizar(
+        Long id,
+        ClienteRequest dto) {
+
+    Cliente cliente =
+            repo.findById(id)
+                    .orElseThrow();
+
+    cliente.setNombre(
+            dto.getNombre()
+    );
+
+    cliente.setApellido(
+            dto.getApellido()
+    );
+
+    cliente.setTelefono(
+            dto.getTelefono()
+    );
+
+    cliente.setDireccion(
+            dto.getDireccion()
+    );
+
+    return ClienteMapper.toResponse(
+            repo.save(cliente)
+    );
+
+}
+
+
+public void eliminar(Long id) {
+
+    repo.deleteById(id);
+
+}
 
 }

@@ -22,89 +22,88 @@ public class PedidoService {
 
     private final ProductoRepository productoRepo;
 
-
-
     // LISTAR PEDIDOS
     public List<PedidoResponse> listar() {
 
         return pedidoRepo.findAll()
-
                 .stream()
-
-                .map(
-                        PedidoMapper::toResponse
-                )
-
+                .map(PedidoMapper::toResponse)
                 .toList();
 
     }
 
-
-
     // CREAR PEDIDO
-    public PedidoResponse crear(
-            PedidoRequest dto) {
-
+    public PedidoResponse crear(PedidoRequest dto) {
 
         Cliente cliente =
-
                 clienteRepo.findById(
                         dto.getClienteId()
                 )
-
                 .orElseThrow(
                         () -> new RuntimeException(
                                 "Cliente no encontrado"
                         )
                 );
 
-
-
-        List<Producto>
-                productos =
-
+        List<Producto> productos =
                 productoRepo.findAllById(
                         dto.getProductosIds()
                 );
 
-
-
         Pedido pedido =
-
                 Pedido.builder()
+                        .fecha(LocalDate.now())
+                        .total(dto.getTotal())
+                        .cliente(cliente)
+                        .productos(productos)
+                        .build();
 
-                .fecha(
-                        LocalDate.now()
-                )
-
-                .total(
-                        dto.getTotal()
-                )
-
-                .cliente(
-                        cliente
-                )
-
-                .productos(
-                        productos
-                )
-
-                .build();
-
-
-
-        return PedidoMapper
-                .toResponse(
-
-                        pedidoRepo.save(
-                                pedido
-                        )
-
-                );
+        return PedidoMapper.toResponse(
+                pedidoRepo.save(pedido)
+        );
 
     }
 
+    // ACTUALIZAR PEDIDO
+    public PedidoResponse actualizar(
+            Long id,
+            PedidoRequest dto) {
 
+        Pedido pedido =
+                pedidoRepo.findById(id)
+                        .orElseThrow();
+
+        Cliente cliente =
+                clienteRepo.findById(
+                        dto.getClienteId()
+                )
+                        .orElseThrow();
+
+        List<Producto> productos =
+                productoRepo.findAllById(
+                        dto.getProductosIds()
+                );
+
+        pedido.setCliente(cliente);
+
+        pedido.setProductos(productos);
+
+        pedido.setTotal(
+                dto.getTotal()
+        );
+
+        return PedidoMapper.toResponse(
+                pedidoRepo.save(pedido)
+        );
+
+    }
+
+    // ELIMINAR PEDIDO
+    public void eliminar(Long id) {
+
+        pedidoRepo.deleteById(id);
+
+    }
 
     // TOTAL DE VENTAS
     public Double totalVentas() {

@@ -12,6 +12,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/pedidos")
 @RequiredArgsConstructor
+@CrossOrigin(origins = {
+    "http://localhost:5173",
+    "http://localhost:5174"
+})
 
 public class PedidoController {
 
@@ -43,6 +47,31 @@ public class PedidoController {
         return service.crear(
                 dto
         );
+
+    }
+
+
+    @PutMapping("/{id}")
+public PedidoResponse actualizar(
+
+        @PathVariable Long id,
+
+        @RequestBody
+        PedidoRequest dto) {
+
+    return service.actualizar(
+            id,
+            dto
+    );
+
+}
+
+    @DeleteMapping("/{id}")
+
+    public void eliminar(
+            @PathVariable Long id) {
+
+        service.eliminar(id);
 
     }
 
