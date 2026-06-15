@@ -1,12 +1,22 @@
 # API2 - La Matera
 
-Sistema de gestión desarrollado para administrar productos, categorías, clientes y pedidos de un emprendimiento.
+## Proyecto Final - Programación IV
 
-Proyecto realizado como práctica de Programación IV utilizando arquitectura Backend + Frontend.
+Sistema de gestión desarrollado para administrar productos, categorías, clientes y pedidos de un emprendimiento denominado "La Matera".
 
-## Tecnologías utilizadas
+El proyecto fue desarrollado utilizando una arquitectura Full Stack, compuesta por un Backend REST en Spring Boot y un Frontend en React.
 
-### Backend
+---
+
+# Objetivo del Proyecto
+
+Desarrollar una aplicación que permita gestionar la información principal de un emprendimiento mediante operaciones CRUD completas, utilizando tecnologías modernas de desarrollo web y bases de datos relacionales.
+
+---
+
+# Tecnologías Utilizadas
+
+## Backend
 
 * Java 21
 * Spring Boot
@@ -16,73 +26,66 @@ Proyecto realizado como práctica de Programación IV utilizando arquitectura Ba
 * Maven
 * Lombok
 
-### Frontend
+## Frontend
 
 * React
+* Vite
 * React Router DOM
 * Axios
+* JavaScript
 
-### Herramientas
+## Herramientas
 
 * Git
 * GitHub
-* Thunder Client
 * Visual Studio Code
 * IntelliJ IDEA
+* Thunder Client
 
 ---
 
-## Descripción
+# Arquitectura Implementada
 
-El sistema permite administrar:
+## Backend
 
-✔ Clientes
+Arquitectura en capas:
 
-✔ Productos
+* Controller
+* Service
+* Repository
+* Entity
+* DTO
+* Mapper
 
-✔ Categorías
+Estructura:
 
-✔ Pedidos
+src/main/java/com/tuapp/lamatera
 
-✔ Dashboard de estadísticas
+* controller
+* service
+* repository
+* entity
+* dto
+* mapper
+* config
 
-Incluye relaciones entre entidades, arquitectura en capas, DTOs, Mappers y persistencia en SQL Server.
+## Frontend
+
+Estructura basada en componentes:
+
+src
+
+* components
+* pages
+* services
 
 ---
 
-## Funcionalidades implementadas
+# Funcionalidades Implementadas
 
-### Productos
+## Dashboard
 
-* Listar productos
-* Crear productos
-* Modificar productos
-* Eliminar productos
-
-### Categorías
-
-* Listar categorías
-* Crear categorías
-* Modificar categorías
-* Eliminar categorías
-
-### Clientes
-
-* Listar clientes
-* Crear clientes
-* Modificar clientes
-* Eliminar clientes
-
-### Pedidos
-
-* Listar pedidos
-* Crear pedidos
-* Modificar pedidos
-* Eliminar pedidos
-
-### Dashboard
-
-Visualización de:
+Visualización de estadísticas generales:
 
 * Cantidad de productos
 * Cantidad de clientes
@@ -91,29 +94,45 @@ Visualización de:
 
 ---
 
-## Arquitectura del Backend
+## Gestión de Productos
 
-src/main/java/com/tuapp/lamatera
-
-controller/
-
-service/
-
-repository/
-
-entity/
-
-dto/
-
-mapper/
-
-config/
+* Listar productos
+* Crear productos
+* Modificar productos
+* Eliminar productos
 
 ---
 
-## Entidades
+## Gestión de Categorías
 
-### Cliente
+* Listar categorías
+* Crear categorías
+* Modificar categorías
+* Eliminar categorías
+
+---
+
+## Gestión de Clientes
+
+* Listar clientes
+* Crear clientes
+* Modificar clientes
+* Eliminar clientes
+
+---
+
+## Gestión de Pedidos
+
+* Listar pedidos
+* Crear pedidos
+* Modificar pedidos
+* Eliminar pedidos
+
+---
+
+# Modelo de Datos
+
+## Cliente
 
 * id
 * nombre
@@ -121,12 +140,12 @@ config/
 * telefono
 * direccion
 
-### Categoria
+## Categoria
 
 * id
 * nombre
 
-### Producto
+## Producto
 
 * id
 * nombre
@@ -139,7 +158,7 @@ Relación:
 
 ManyToOne → Categoria
 
-### Pedido
+## Pedido
 
 * id
 * fecha
@@ -159,67 +178,51 @@ pedido_producto
 
 ---
 
-## Relaciones implementadas
+# Relaciones Implementadas
 
-✔ OneToMany
-
-✔ ManyToOne
-
-✔ ManyToMany
-
-✔ Tabla intermedia
+* OneToMany
+* ManyToOne
+* ManyToMany
+* Tabla intermedia
 
 ---
 
-## Endpoints principales
+# Endpoints Disponibles
 
-### Clientes
+## Clientes
 
-GET /clientes
+* GET /clientes
+* POST /clientes
+* PUT /clientes/{id}
+* DELETE /clientes/{id}
 
-POST /clientes
+## Productos
 
-PUT /clientes/{id}
+* GET /productos
+* POST /productos
+* PUT /productos/{id}
+* DELETE /productos/{id}
 
-DELETE /clientes/{id}
+## Categorías
 
-### Productos
+* GET /categorias
+* POST /categorias
+* PUT /categorias/{id}
+* DELETE /categorias/{id}
 
-GET /productos
+## Pedidos
 
-POST /productos
-
-PUT /productos/{id}
-
-DELETE /productos/{id}
-
-### Categorías
-
-GET /categorias
-
-POST /categorias
-
-PUT /categorias/{id}
-
-DELETE /categorias/{id}
-
-### Pedidos
-
-GET /pedidos
-
-POST /pedidos
-
-PUT /pedidos/{id}
-
-DELETE /pedidos/{id}
-
-GET /pedidos/ventas
+* GET /pedidos
+* POST /pedidos
+* PUT /pedidos/{id}
+* DELETE /pedidos/{id}
+* GET /pedidos/ventas
 
 ---
 
-## Consultas personalizadas
+# Consultas Personalizadas
 
-Implementadas mediante:
+Se implementaron consultas utilizando:
 
 @Query
 
@@ -227,40 +230,36 @@ Ejemplo:
 
 SELECT SUM(total)
 
-Para calcular el total de ventas.
+Para obtener el total de ventas registradas.
 
 ---
 
-## Pruebas
+# Base de Datos
 
-Para ejecutar los tests:
+Motor utilizado:
 
-.\mvnw test
+SQL Server
 
 Incluye:
 
-* ProductoServiceTest
-* ProductoControllerTest
-* LamateraApplicationTests
+* Base de datos
+* Tablas
+* Relaciones
+* Tabla intermedia pedido_producto
+
+Script:
+
+database/script_lamatera.sql
 
 ---
 
-## Configuración
-
-Editar:
-
-src/main/resources/application.properties
+# Ejecución del Backend
 
 Configurar:
 
-* SQL Server
-* Usuario
-* Contraseña
-* Base de datos
+src/main/resources/application.properties
 
----
-
-## Ejecutar Backend
+Ejecutar:
 
 .\mvnw spring-boot:run
 
@@ -270,72 +269,80 @@ http://localhost:8080
 
 ---
 
-## Ejecutar Frontend
+# Ejecución del Frontend
+
+Instalar dependencias:
 
 npm install
 
+Ejecutar:
+
 npm run dev
 
-Servidor React:
+Servidor:
 
 http://localhost:5173
 
 ---
 
-## Script SQL
+# Pruebas
 
-Incluye script para crear:
+Incluye pruebas unitarias y de integración:
 
-✔ Base de datos
+* ProductoServiceTest
+* ProductoControllerTest
+* LamateraApplicationTests
 
-✔ Tablas
+Ejecutar:
 
-✔ Relaciones
-
-✔ Tabla intermedia pedido_producto
-
-Ubicación:
-
-database/script_lamatera.sql
+.\mvnw test
 
 ---
 
-## Autor
+# Repositorios
+
+## Backend
+
+https://github.com/Marcos-MEG-H44/API2-lamatera
+
+## Frontend
+
+https://github.com/Marcos-MEG-H44/API2-lamatera-frontend
+
+---
+
+# Autor
 
 Marcos Godoy
 
 Tecnicatura en Programación
 
-Programación IV
+Materia: Programación IV
 
 ---
 
-## Repositorio
+# Estado del Proyecto
 
-Repositorio GitHub:
-
-https://github.com/Marcos-MEG-H44/API2-lamatera
-
----
-
-## Estado del proyecto
-
-✔ CRUD completo
+✔ Backend Spring Boot
 
 ✔ Frontend React
 
-✔ Backend Spring Boot
+✔ CRUD completo
 
 ✔ SQL Server
 
 ✔ Dashboard
 
+✔ Arquitectura en capas
+
+✔ DTOs y Mappers
+
 ✔ Relaciones entre entidades
 
-✔ Tests implementados
-
-✔ Documentación
+✔ Tests
 
 ✔ GitHub
 
-Estado: TERMINADO
+✔ Documentación
+
+PROYECTO FINALIZADO
