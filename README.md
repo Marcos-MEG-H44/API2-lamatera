@@ -2,9 +2,12 @@
 
 ## Proyecto Final - Programación IV
 
-Sistema de gestión desarrollado para administrar productos, categorías, clientes y pedidos de un emprendimiento denominado "La Matera".
+Sistema de gestión desarrollado para administrar productos, categorías, clientes y pedidos del emprendimiento **La Matera del Gringo y la Nona**.
 
-El proyecto fue desarrollado utilizando una arquitectura Full Stack, compuesta por un Backend REST en Spring Boot y un Frontend en React.
+El proyecto fue desarrollado utilizando una arquitectura Full Stack compuesta por:
+
+* Backend REST desarrollado con Spring Boot.
+* Frontend desarrollado con React.
 
 ---
 
@@ -57,7 +60,7 @@ Arquitectura en capas:
 * DTO
 * Mapper
 
-Estructura:
+Estructura principal:
 
 src/main/java/com/tuapp/lamatera
 
@@ -92,16 +95,12 @@ Visualización de estadísticas generales:
 * Cantidad de pedidos
 * Total de ventas
 
----
-
 ## Gestión de Productos
 
 * Listar productos
 * Crear productos
 * Modificar productos
 * Eliminar productos
-
----
 
 ## Gestión de Categorías
 
@@ -110,16 +109,12 @@ Visualización de estadísticas generales:
 * Modificar categorías
 * Eliminar categorías
 
----
-
 ## Gestión de Clientes
 
 * Listar clientes
 * Crear clientes
 * Modificar clientes
 * Eliminar clientes
-
----
 
 ## Gestión de Pedidos
 
@@ -222,15 +217,13 @@ pedido_producto
 
 # Consultas Personalizadas
 
-Se implementaron consultas utilizando:
-
-@Query
+Implementadas mediante @Query.
 
 Ejemplo:
 
 SELECT SUM(total)
 
-Para obtener el total de ventas registradas.
+Utilizada para calcular el total de ventas registradas.
 
 ---
 
@@ -253,7 +246,9 @@ database/script_lamatera.sql
 
 ---
 
-# Ejecución del Backend
+# Cómo Ejecutar el Proyecto
+
+## Backend
 
 Configurar:
 
@@ -261,15 +256,13 @@ src/main/resources/application.properties
 
 Ejecutar:
 
-.\mvnw spring-boot:run
+mvn spring-boot:run
 
 Servidor:
 
 http://localhost:8080
 
----
-
-# Ejecución del Frontend
+## Frontend
 
 Instalar dependencias:
 
@@ -295,7 +288,7 @@ Incluye pruebas unitarias y de integración:
 
 Ejecutar:
 
-.\mvnw test
+mvn test
 
 ---
 
@@ -308,6 +301,16 @@ https://github.com/Marcos-MEG-H44/API2-lamatera
 ## Frontend
 
 https://github.com/Marcos-MEG-H44/API2-lamatera-frontend
+
+---
+
+# Documentación de Entrega
+
+Se incluye además el archivo:
+
+ENTREGA.md
+
+con instrucciones resumidas para la corrección del proyecto.
 
 ---
 
@@ -339,10 +342,10 @@ Materia: Programación IV
 
 ✔ Relaciones entre entidades
 
-✔ Tests
+✔ Tests implementados
 
 ✔ GitHub
 
 ✔ Documentación
 
-PROYECTO FINALIZADO
+## Estado: PROYECTO FINALIZADO
